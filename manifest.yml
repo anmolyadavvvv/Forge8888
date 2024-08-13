@@ -1,0 +1,28 @@
+modules:
+  jira:projectPage:
+    - key: 8888-hello-world-project-page
+      resource: main
+      resolver:
+        function: resolver
+      title: "8888"
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: static/hello-world/build
+app:
+  runtime:
+    name: nodejs18.x
+  id: ari:cloud:ecosystem::app/40b1abc7-f5b7-4695-b39e-e05640a329cf
+permissions:
+  content:
+    styles:
+      - 'unsafe-inline'
+
+  scopes: []
+
+  external:
+    fetch:
+      backend:
+        - gitlab.com
