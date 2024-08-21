@@ -7,10 +7,11 @@ const Modal = ({ isOpen, onClose, content }) => {
     <>
       <div className="backdrop" onClick={onClose}></div>
       <div className="modal">
+        
         <div className="modal-content">
-          <span className="close" onClick={onClose}>
+        <span className="close" onClick={onClose}>
             &times;
-          </span>
+          </span> 
           <div className="modal-body">{content}</div>
         </div>
       </div>

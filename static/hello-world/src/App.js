@@ -14,6 +14,8 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="timeline-container">
+      <h1 className="tg-1">CYCLE-TIME</h1>
+
         {data ? (
           <div className="timeline">
             <TimelineItem
@@ -53,18 +55,18 @@ function App() {
 
             <div
               className="timeline-arrow arrow-1"
-              onMouseEnter={() => showTooltip(data.devTime)}
-              onMouseLeave={hideTooltip}
+             // onMouseEnter={() => showTooltip(data.devTime)}
+              //onMouseLeave={hideTooltip}
             >
-              devTime
+              dev:{data.devTime}
             </div>
 
             <div
               className="timeline-arrow arrow-2"
-              onMouseEnter={() => showTooltip(data.revTime)}
-              onMouseLeave={hideTooltip}
+             // onMouseEnter={() => showTooltip(data.revTime)}
+              //onMouseLeave={hideTooltip}
             >
-              revTime
+              rev:{data.revTime}
             </div>
 
             <div
@@ -84,7 +86,7 @@ function App() {
             />
           </div>
         ) : (
-          <p>Loading...</p>
+          <p> </p>
         )}
         <Tooltip visible={tooltipVisible} content={tooltipContent} />
         <Modal isOpen={isPRModalOpen} onClose={closePRModal} content={prModalContent} />
