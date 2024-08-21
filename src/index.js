@@ -14,20 +14,17 @@ resolver.define('getDetails', async (req) => {
             const createdDate = new Date(mr.created_at);
             const now = new Date();
 
-           
             const prCloseDate = mr.state === 'merged' ? new Date(mr.merged_at) : now;
             const devTime = prCloseDate - createdDate;
-
-            // Rev time
             const revTime = prCloseDate - createdDate;
 
             return {
                 title: mr.title,
                 assignees: mr.assignees ? mr.assignees.map(a => a.name).join(', ') : 'None',
                 reviewers: mr.reviewers ? mr.reviewers.map(r => r.name).join(', ') : 'None',
-                age: formatDuration(now - createdDate),
-                devTime: formatDuration(devTime),
-                revTime: formatDuration(revTime),
+                age: formatSpecialCases(now - createdDate),
+                devTime: formatSpecialCases(devTime),
+                revTime: formatSpecialCases(revTime),
             };
         });
 
@@ -65,13 +62,23 @@ async function getFirstCommitDate() {
     }
 }
 
-function formatDuration(ms) {
+function formatSpecialCases(ms) {
     const seconds = Math.floor(ms / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
 
-    return `${days} days ${hours % 24} hours ${minutes % 60} minutes ${seconds % 60} seconds`;
+    if (days > 0) {
+        return `${days} days`;
+    } else if (hours > 0) {
+        return `${hours} hours`;
+    } else if (minutes > 0) {
+        return `${minutes} minutes`;
+    } else if (seconds > 0) {
+        return `${seconds} seconds`;
+    } else {
+        return '0 seconds'; // In case of 0 milliseconds
+    }
 }
 
 export const handler = resolver.getDefinitions();

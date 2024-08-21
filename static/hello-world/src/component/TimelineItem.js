@@ -1,4 +1,3 @@
-// src/components/TimelineItem.js
 import React from 'react';
 import formatDate from '../utils/util';
 const TimelineItem = ({ type, date, devTime, revTime, onClick, children }) => {

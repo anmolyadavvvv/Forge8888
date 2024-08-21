@@ -15,6 +15,9 @@ app:
   runtime:
     name: nodejs18.x
   id: ari:cloud:ecosystem::app/40b1abc7-f5b7-4695-b39e-e05640a329cf
+  licensing:
+    enabled: true
+
 permissions:
   content:
     styles:

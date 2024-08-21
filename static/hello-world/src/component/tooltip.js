@@ -1,4 +1,3 @@
-// src/components/Tooltip.js
 import React from 'react';
 
 const Tooltip = ({ visible, content }) => {

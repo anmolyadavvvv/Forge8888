@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { useTimelineData, useModal, useTooltip } from "./Hook/hooks";
 import ErrorBoundary from "./component/ErrorBoundary";
@@ -18,7 +17,7 @@ function App() {
         {data ? (
           <div className="timeline">
             <TimelineItem
-              type="1st commit"
+              type="First commit"
               date={data.firstCommitDate}
             />
 
