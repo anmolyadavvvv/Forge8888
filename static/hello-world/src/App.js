@@ -19,25 +19,31 @@ function App() {
         {data ? (
           <div className="timeline">
             <TimelineItem
-              type="First commit"
+              type ="First commit"
               date={data.firstCommitDate}
             />
 
             <TimelineItem
               type={`Open MR: ${data.numberOfOpenMergeRequests}`}
               date={data.openMergeRequestDate}
-              onClick={() => openPRModal(
-                data.data.map((mr) => (
-                  <div className="time-item" key={mr.title}>
-                    <div className="time-age">{mr.age}</div>
-                    <div className="time-content">
-                      <div className="time-header">{mr.title}</div>
-                      <div className="time-text">Assignees: {mr.assignees}</div>
-                      <div className="time-text">Reviewers: {mr.reviewers}</div>
+              onClick={() =>
+                openPRModal(
+                  data.data.map((mr) => (
+                    <div id={`R-content-${mr.id}`} key={mr.id}>
+                      <ul className="R">
+                        <li className="event" data-date={mr.age}>
+                          <h3>
+                            <strong>{mr.title}</strong> <br />
+                            <strong>Assignees:</strong> {mr.assignees}
+                            <br />
+                            <strong>Reviewers:</strong> {mr.reviewers}
+                          </h3>
+                        </li>
+                      </ul>
                     </div>
-                  </div>
-                ))
-              )}
+                  ))
+                )
+              }
             />
 
             <TimelineItem
@@ -55,40 +61,22 @@ function App() {
 
             <div
               className="timeline-arrow arrow-1"
-             // onMouseEnter={() => showTooltip(data.devTime)}
-              //onMouseLeave={hideTooltip}
+            
             >
               dev:{data.devTime}
             </div>
 
             <div
               className="timeline-arrow arrow-2"
-             // onMouseEnter={() => showTooltip(data.revTime)}
-              //onMouseLeave={hideTooltip}
+           
             >
               rev:{data.revTime}
             </div>
 
-            <div
-              className="timeline-arrow arrow-pr"
-              onClick={() => openPRModal(
-                data.data.map((mr) => (
-                  <div className="time-item" key={mr.title}>
-                    <div className="time-age">{mr.age}</div>
-                    <div className="time-content">
-                      <div className="time-header">{mr.title}</div>
-                      <div className="time-text">Assignees: {mr.assignees}</div>
-                      <div className="time-text">Reviewers: {mr.reviewers}</div>
-                    </div>
-                  </div>
-                ))
-              )}
-            />
           </div>
         ) : (
           <p> </p>
         )}
-        <Tooltip visible={tooltipVisible} content={tooltipContent} />
         <Modal isOpen={isPRModalOpen} onClose={closePRModal} content={prModalContent} />
       </div>
     </ErrorBoundary>

@@ -3,7 +3,7 @@ import formatDate from '../utils/util';
 const TimelineItem = ({ type, date, devTime, revTime, onClick, children }) => {
   return (
     <div className="timeline-item">
-      <p>{type}</p>
+      <p className='ak-27'>{type}</p>
       <div
         className="timeline-circle"
         onClick={onClick}
